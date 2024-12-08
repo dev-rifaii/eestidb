@@ -19,6 +19,20 @@ export async function insertVocabulary(vocabulary) {
                 partitive: vocabulary.partitive,
                 user_id: (await supabase.auth.getSession()).data.session.user.id
             },
-        ])
-        .select()
+        ]).select();
+}
+
+export async function updateVocabulary(vocabulary) {
+    return supabase
+        .from('vocabulary')
+        .update(vocabulary)
+        .eq('id', vocabulary.id)
+        .select();
+}
+
+export async function deleteVocabulary(id) {
+    return supabase
+        .from('vocabulary')
+        .delete()
+        .eq('id', id);
 }

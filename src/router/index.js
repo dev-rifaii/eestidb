@@ -18,8 +18,9 @@ const router = createRouter({
         },
         {
             path: '/word',
-            name: 'word',
-            component: WordFormView
+            name: 'word-form',
+            component: WordFormView,
+            props: true
         }
     ],
 })

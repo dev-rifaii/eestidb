@@ -1,26 +1,30 @@
 <script setup>
 
 import {ref} from "vue";
-import {insertVocabulary} from "@/client/vocabulary.js";
+import {insertVocabulary, updateVocabulary} from "@/client/vocabulary.js";
 import router from "@/router/index.js";
+import {useRoute} from "vue-router";
 
-const props = defineProps({
-  en: {type: String, required: false},
-  nominative: {type: String, required: false},
-  genitive: {type: String, required: false},
-  partitive: {type: String, required: false}
-})
+const route = useRoute()
 
 const word = ref({
-  en: props.en,
-  nominative: props.nominative,
-  genitive: props.genitive,
-  partitive: props.partitive,
+  id: route.query.id,
+  en: route.query.en,
+  nominative: route.query.nominative,
+  genitive: route.query.genitive,
+  partitive: route.query.partitive,
 });
 
+const isEdit = ref(route.query.edit)
+
 const submitWordForm = async () => {
-  insertVocabulary(word.value)
-      .then(_ => router.push("/"));
+  if (!isEdit.value) {
+    insertVocabulary(word.value)
+        .then(_ => router.push("/"));
+    return Promise.resolve();
+  }
+
+  await updateVocabulary(word.value)
 }
 
 </script>
