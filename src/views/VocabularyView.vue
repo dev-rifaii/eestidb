@@ -3,7 +3,8 @@
 import WordCard from "@/components/WordCard.vue";
 import {computed, onBeforeMount, onMounted} from "vue";
 import {ref} from "vue";
-import {fetchVocabulary, insertVocabulary} from "@/client/vocabulary.js";
+import {fetchVocabulary} from "@/client/vocabulary.js";
+import router from "@/router/index.js";
 
 const search = ref('');
 const words = ref([]);
@@ -23,13 +24,19 @@ const filterWords = computed(() => {
   );
 })
 
+const vocabNotEmpty = computed(() => {
+  return words.value.length > 0;
+})
+
 </script>
 
 <template>
   <div class="vocab-page">
     <div class="vocab-header">
-      <WordModal/>
-      <input type="text" v-model="search" placeholder="Search">
+      <input v-if="vocabNotEmpty" type="text" v-model="search" placeholder="Search">
+      <RouterLink to="/word">
+        <button class="button-1">Insert</button>
+      </RouterLink>
     </div>
     <div class="vocab-grid">
       <WordCard v-for="word in filterWords" :key="word.id"

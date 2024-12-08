@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import VocabularyView from "@/views/VocabularyView.vue";
 import AuthView from "@/views/AuthView.vue";
+import WordFormView from "@/views/WordFormView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,11 @@ const router = createRouter({
             name: 'auth',
             component: AuthView
         },
+        {
+            path: '/word',
+            name: 'word',
+            component: WordFormView
+        }
     ],
 })
 

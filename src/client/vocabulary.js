@@ -1,4 +1,5 @@
 import supabase from "@/client/supabase.js";
+import {getUserId} from "@/util/auth-util.js";
 
 export async function fetchVocabulary() {
     const {data, error} = await supabase
@@ -16,6 +17,7 @@ export async function insertVocabulary(vocabulary) {
                 nominative: vocabulary.nominative,
                 genitive: vocabulary.genitive,
                 partitive: vocabulary.partitive,
+                user_id: (await supabase.auth.getSession()).data.session.user.id
             },
         ])
         .select()

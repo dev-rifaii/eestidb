@@ -2,27 +2,16 @@
 import {RouterLink, RouterView} from 'vue-router'
 import {computed, onBeforeMount, ref} from "vue";
 import router from "@/router/index.js";
+import {checkIfAuthenticated} from "@/util/auth-util.js";
 
 const isAuthenticated = ref(false)
 
-onBeforeMount(() => {
-  isAuthenticated.value = checkIfAuthenticated();
+onBeforeMount(async () => {
+  isAuthenticated.value = await checkIfAuthenticated();
 })
 
-const checkIfAuthenticated = () => {
-  const session = localStorage.getItem('session');
-  if (!session) return false;
-  const sessionJson = JSON.parse(session);
-  if (!sessionJson['expires_at'] || !sessionJson['access_token']) return false;
-
-  const tokenExpiresAt = new Date(sessionJson['expires_at'] * 1000);
-  const currentDate = new Date();
-  const isExpiredToken = tokenExpiresAt < currentDate;
-  return !isExpiredToken;
-}
 
 const authLabel = computed(() => {
-  // console.log(isAuthenticated.value)
   return isAuthenticated.value === true ? 'Sign out' : 'Sign in';
 })
 
