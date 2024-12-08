@@ -60,7 +60,6 @@ const vocabNotEmpty = computed(() => {
 }
 
 .vocab-header {
-  border: 1px solid red;
   margin: 0 25px 0 25px;
   display: flex;
   align-items: center;
