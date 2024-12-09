@@ -49,9 +49,6 @@ const isAuthPath = computed(() => {
 
 <style scoped>
 
-header, header > * {
-}
-
 header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -78,7 +75,6 @@ header > .header-center {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 footer {
@@ -91,6 +87,8 @@ footer {
 .logo-img {
   height: 100%;
   align-self: center;
+  min-width: 150px;
+  min-height: 50px;
 }
 
 @media screen and (max-width: 500px) {
