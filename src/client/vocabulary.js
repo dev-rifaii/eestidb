@@ -1,10 +1,10 @@
 import supabase from "@/client/supabase.js";
-import {getUserId} from "@/util/auth-util.js";
 
 export async function fetchVocabulary() {
     const {data, error} = await supabase
         .from('vocabulary')
-        .select('*');
+        .select('*')
+        .order('created_at', {ascending: false});
     return data;
 }
 

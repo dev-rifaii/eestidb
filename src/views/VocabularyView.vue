@@ -36,7 +36,7 @@ const vocabNotEmpty = computed(() => {
       <RouterLink to="/word">
         <button class="button-1">Insert</button>
       </RouterLink>
-      <input class="vocab-search" v-if="vocabNotEmpty" type="text" v-model="search" placeholder="Search">
+      <input class="vocab-search" v-if="vocabNotEmpty" type="text" v-model="search" placeholder="Search" autocapitalize="off">
       <button class="button-1" @click="editable = !editable">Edit</button>
     </div>
     <div class="vocab-grid">
@@ -68,7 +68,7 @@ const vocabNotEmpty = computed(() => {
 }
 
 .vocab-search {
-  min-width: 140px;
+  min-width: 100px;
 }
 
 .vocab-grid {

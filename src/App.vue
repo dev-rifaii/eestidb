@@ -31,12 +31,15 @@ const isAuthPath = computed(() => {
 
 <template>
   <header>
-    <RouterLink to="/">
-      <button class="button-1">Vocabulary</button>
-    </RouterLink>
-    <RouterLink to="auth">
-      <button class="button-1" @click="authButtonClick" v-if="!isAuthPath">{{ authLabel }}</button>
-    </RouterLink>
+    <img class="logo-img" src="./assets/logo-transp.png" alt="logo">
+    <div class="header-center">
+      <RouterLink to="/">
+        <button class="button-1">Vocabulary</button>
+      </RouterLink>
+      <RouterLink to="auth">
+        <button class="button-1" @click="authButtonClick" v-if="!isAuthPath">{{ authLabel }}</button>
+      </RouterLink>
+    </div>
   </header>
   <div class="body">
     <RouterView/>
@@ -46,12 +49,28 @@ const isAuthPath = computed(() => {
 
 <style scoped>
 
+header, header > * {
+}
+
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   gap: 10px;
   min-height: 9dvh;
+  max-height: 9dvh;
+  height: 9dvh;
+}
+
+header > * {
+  max-height: 100%;
+}
+
+header > .header-center {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .body {
@@ -59,6 +78,7 @@ header {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 footer {
@@ -66,6 +86,21 @@ footer {
   align-items: center;
   justify-content: center;
   min-height: 5dvh;
+}
+
+.logo-img {
+  height: 100%;
+  align-self: center;
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-img {
+    justify-self: center;
+  }
 }
 
 </style>

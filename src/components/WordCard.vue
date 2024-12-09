@@ -83,7 +83,6 @@ h1 {
   /*max-width: 450px*/;
   word-break: break-word;
   padding: 10px;
-  background-color: var(--second-bg-color);
   background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
 }
 
